@@ -1,5 +1,4 @@
-package com.fidenz.service;
-
+package com.fidenz.manager;
 
 import com.fidenz.entity.Customers;
 
@@ -8,7 +7,7 @@ import java.util.List;
 /**
  * @author Kalana on May, 2018
  */
-public interface CustomerService {
+public interface CustomerManager {
 
     List<Customers> findAllCustomers();
 

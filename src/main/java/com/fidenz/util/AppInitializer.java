@@ -10,7 +10,6 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 import java.io.File;
 import java.io.FileWriter;
@@ -22,9 +21,8 @@ import java.util.List;
  */
 public class AppInitializer implements WebApplicationInitializer {
     public static final Logger LOGGER = Logger.getLogger(AppInitializer.class.getName());
-
     @Override
-    public void onStartup(ServletContext container) throws ServletException {
+    public void onStartup(ServletContext container) {
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
         ctx.register(AppConfig.class);
         ctx.setServletContext(container);
@@ -36,13 +34,18 @@ public class AppInitializer implements WebApplicationInitializer {
 
         File file = new File("C:\\assignment\\csv");
         if (!file.isDirectory()) {
+            new File("C:\\assignment").mkdir();
             file.mkdir();
+
         } else {
             File csvFile = new File("C:\\assignment\\csv\\customers.csv");
             if (csvFile.exists()) {
                 csvFile.delete();
             }
-            File jsonFile = new File("C:\\assignment\\28.05.2018-JAVA.json");
+            ClassLoader classLoader = getClass().getClassLoader();
+            File fileName = new File(classLoader.getResource("com/fidenz/util/resources/28.05.2018-JAVA.json").getFile());
+
+            File jsonFile = new File(fileName.getAbsolutePath());
             ObjectMapper objectMapper = new ObjectMapper();
             try {
                 TypeFactory typeFactory = objectMapper.getTypeFactory();
@@ -75,7 +78,6 @@ public class AppInitializer implements WebApplicationInitializer {
                         fileWriter.append(customer.getAddress().getState()).append(commaDelimeter);
                         fileWriter.append(customer.getAddress().getZipcode()).append(commaDelimeter);
                         fileWriter.append(customer.getAbout().replaceAll("[\n\r]","")).append(commaDelimeter);
-//                        fileWriter.append("ABOUT").append(commaDelimeter);
                         fileWriter.append(customer.getRegistered()).append(commaDelimeter);
                         fileWriter.append(customer.getLatitude()).append(commaDelimeter);
                         fileWriter.append(customer.getLongitude()).append(commaDelimeter);

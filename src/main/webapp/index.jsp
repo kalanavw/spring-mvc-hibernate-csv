@@ -1,5 +1,8 @@
 <html>
 <body>
-<h2>Hello World! ***</h2>
+
+<%
+    response.sendRedirect("http://localhost:4200/");
+%>
 </body>
 </html>

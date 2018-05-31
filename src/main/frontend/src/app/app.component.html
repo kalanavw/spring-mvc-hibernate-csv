@@ -1,0 +1,58 @@
+<table>
+  <tr>
+    <td>ID</td>
+    <td><input type="text" [(ngModel)]="id"></td>
+    <td></td>
+    <td><input type="button" value="SEARCH" (click)="searchCustomersByID()"></td>
+  </tr>
+  <tr>
+    <td>NAME</td>
+    <td><input type="text" [(ngModel)]="name"></td>
+    <td></td>
+    <td><input type="button" value="SEARCH" (click)="searchCustomersByName()"></td>
+  </tr>
+  <tr>
+    <td>ZIP CODE</td>
+    <td><input type="text" [(ngModel)]="zipCode"></td>
+    <td></td>
+    <td><input type="button" value="SEARCH" (click)="searchCustomersByZipCode()"></td>
+  </tr>
+</table>
+
+
+<table border="1">
+  <tr>
+    <th>INDEX</th>
+    <th>AGE</th>
+    <th>EYECOLOR</th>
+    <th>NAME</th>
+    <th>GENDER</th>
+    <th>COMPANY</th>
+    <th>EMAIL</th>
+    <th>PHONE</th>
+    <th>ADDRESS</th>
+    <th>ABOUT</th>
+    <th>REGISTERED</th>
+    <th>LATITUDE</th>
+    <th>LONGITUDE</th>
+    <th>TAGS</th>
+  </tr>
+  <tr *ngFor="let customer of customers">
+    <td>{{customer.index}}</td>
+    <td>{{customer.age}}</td>
+    <td>{{customer.eyeColor}}</td>
+    <td>{{customer.name}}</td>
+    <td>{{customer.gender}}</td>
+    <td>{{customer.company}}</td>
+    <td>{{customer.email}}</td>
+    <td>{{customer.phone}}</td>
+    <td>{{customer.number}}, {{customer.street}}, {{customer.street}}, {{customer.city}}, {{customer.state}},
+      {{customer.state}}, {{customer.zipCode}}
+    </td>
+    <td>{{customer.about}}</td>
+    <td>{{customer.registered}}</td>
+    <td>{{customer.latitude}}</td>
+    <td>{{customer.longitude}}</td>
+    <td>{{customer.tags}}</td>
+  </tr>
+</table>
